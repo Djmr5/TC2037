@@ -1,25 +1,33 @@
 #lang racket
 
-(require racket/format)
+; Depending on the token and who it matches the span tag class changes and it's sended to the html as a format
+(define (highlight-token token)
+  (cond
+    [(not (string? token)) ""]
+    [(regexp-match? #px"^\\s+$" token) (format "<span>~a</span>" token)]
+    [(regexp-match? #px"^[][(){}]$" token) (format "<span class=\"punctuation\">~a</span>" token)]
+    [(regexp-match? #px"^\".*\"$" token) (format "<span class=\"string\">~a</span>" token)]
+    [(regexp-match? #px"^;*$" token) (format "<span class=\"comment\">~a</span>" token)]
+    [(regexp-match? #px"^[[:alpha:]][[:alnum:]_]*$" token) (format "<span class=\"identifier\">~a</span>" token)]
+    [(regexp-match? #px"^0[xX][[:xdigit:]]+$" token) (format "<span class=\"hexadecimal\">~a</span>" token)]
+    [(regexp-match? #px"^\\d+\\.\\d*$" token) (format "<span class=\"float\">~a</span>" token)]
+    [(regexp-match? #px"^\\d+$" token) (format "<span class=\"integer\">~a</span>" token)]
+    [else (format "<span>~a</span>" token)]))
 
-; returns the html span with the word
-(define (highlight-word word)
-  (format "<span class='highlight'>~a</span>" word))
-
-; sends all the words inside a line to the highlight word function
+; The process-line function creates tokens for every keyword and sends the tokenized version of the line
+; to the function highlight-token where it will be processed, this happens to every token due to the map function
 (define (process-line line)
-  (string-join (map highlight-word (string-split line)) " "))
+  (define (tokenize str)
+    (regexp-match* #px"(\\s+|[(){}\\[\\];,]|\"[^\"]*\"|;.*|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
+  (string-join (map highlight-token (tokenize line)) ""))
 
-(define (process-file input-file output-file)
-  (with-input-from-file input-file
-    (lambda ()
-      (with-output-to-file output-file
-        (lambda ()
-          (display "<pre>\n")
-          ; for loop for all lines inside file
-          (for ([line (in-lines)])
-            (display (process-line line))
-            (display "\n"))
-          (display "</pre>\n"))))))
-
-;(process-file "code.py" "output.html")
+; Receives the input file and outputs the file into html file
+(with-input-from-file "code.rkt"
+  (lambda ()
+    (define output-port (open-output-file "output.html"))
+    (display "<html>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n<pre>\n" output-port)
+    (for ([l (in-lines)])
+      (display (process-line l) output-port)
+      (display "\n" output-port))
+    (display "</pre></html>\n" output-port)
+    (close-output-port output-port)))

@@ -1,0 +1,31 @@
+.punctuation {
+  color: #4d2b12;
+}
+
+.string {
+  color: #00b300;
+}
+
+.comment {
+  color: #ff6a00;
+}
+
+.identifier {
+  color: #1d1d7c;
+}
+
+.hexadecimal {
+  color: #b300b3;
+}
+
+.float {
+  color: #008080;
+}
+
+.integer {
+  color: #ff00ff;
+}
+
+.unknown {
+  color: #ff0000;
+}
