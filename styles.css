@@ -1,31 +1,35 @@
-.punctuation {
-  color: #4d2b12;
+.block {
+  color: darkred;
 }
 
 .string {
-  color: #00b300;
+  color: limegreen
 }
 
 .comment {
-  color: #ff6a00;
+  color: orangered;
 }
 
-.identifier {
-  color: #1d1d7c;
+.var {
+  color:darkblue;
 }
 
 .hexadecimal {
-  color: #b300b3;
+  color: limegreen;
 }
 
 .float {
-  color: #008080;
+  color: limegreen;
 }
 
 .integer {
-  color: #ff00ff;
+  color: limegreen;
 }
 
-.unknown {
-  color: #ff0000;
+.keyword {
+  color:dodgerblue;
+}
+
+.lang {
+  color: black;
 }
