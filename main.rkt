@@ -7,8 +7,7 @@
     [(regexp-match? #px"^\\s+$" token) (format "<span>~a</span>" token)]
     [(regexp-match? #px"^(define|lambda|let|if|cond|case|print|display|and|or|not)$" token) (format "<span class=\"keyword\">~a</span>" token)]
     [(regexp-match? #px"^[][(){}]$" token) (format "<span class=\"block\">~a</span>" token)]
-    [(regexp-match? #px"^\\s*;.*$" token) (format "<span class=\"comment\">~a</span>" token)]
-    [(regexp-match? #px"^\\s*#.*$" token) (format "<span class=\"lang\">~a</span>" token)]
+    [(regexp-match? #px"^<>;#$" token) (format "<span class=\"punctuation\">~a</span>" token)]
     [(regexp-match? #px"^\".*\"$" token) (format "<span class=\"string\">~a</span>" token)]
     [(regexp-match? #px"^[[:alpha:]][[:alnum:]_]*$" token) (format "<span class=\"var\">~a</span>" token)]
     [(regexp-match? #px"^#x[[:xdigit:]]+$" token) (format "<span class=\"hexadecimal\">~a</span>" token)]
@@ -21,16 +20,17 @@
 ; to the function highlight-token where it will be processed, this happens to every token due to the map function
 (define (process-line line)
   (define (tokenize str)
-    (regexp-match* #px"(\\s+|[(){}\\[\\]]|\"[^\"]*\"|;.*|#.*|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
+    (regexp-match* #px"(\\s+|[][(){}<>;#]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
   (string-join (map highlight-token (tokenize line)) ""))
 
 ; Receives the input file and outputs the file into html file
-(with-input-from-file "code.rkt"
+(define (process-file input-file output-file) 
+(with-input-from-file input-file
   (lambda ()
-    (define output-port (open-output-file "output.html"))
+    (define output-port (open-output-file output-file))
     (display "<html>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n<pre>\n" output-port)
     (for ([l (in-lines)])
       (display (process-line l) output-port)
       (display "\n" output-port))
     (display "</pre>\n</html>\n" output-port)
-    (close-output-port output-port)))
+    (close-output-port output-port))))
