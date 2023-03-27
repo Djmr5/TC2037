@@ -1,13 +1,17 @@
+.keyword {
+  color: dodgerblue;
+}
+
 .block {
-  color: darkred;
+  color: yellow;
+}
+
+.punctuation {
+  color: orangered;
 }
 
 .string {
-  color: limegreen
-}
-
-.comment {
-  color: orangered;
+  color: green;
 }
 
 .var {
@@ -24,12 +28,4 @@
 
 .integer {
   color: limegreen;
-}
-
-.keyword {
-  color:dodgerblue;
-}
-
-.lang {
-  color: black;
 }

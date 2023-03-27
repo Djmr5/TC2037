@@ -1,0 +1,50 @@
+Puntuación:
+.
+,
+;
+:
+#
+!
+'
++
+-
+/
+*
+%
+(
+)
+{
+}
+[
+]
+Palabras reservadas:
+if
+else
+break
+case
+const
+continue
+for
+new
+null
+private
+protected
+public
+return
+short
+static
+switch
+this
+throw
+try
+typeof
+void
+volatile
+while
+Declaración de Datos:
+“string” (string)
+1234 (integer)
+1.4 ó .45 (float)
+true
+false
+
