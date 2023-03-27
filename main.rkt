@@ -35,6 +35,7 @@
     (display "</pre>\n</html>\n" output-port)
     (close-output-port output-port))))
 
+; Execution examples as HTML
 (process-file "code.cpp" "outputcpp.html")
 (process-file "code.js" "outputjs.html")
 (process-file "code.rkt" "outputrkt.html")

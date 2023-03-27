@@ -17,6 +17,7 @@ Puntuación:
 }
 [
 ]
+
 Palabras reservadas:
 if
 else
@@ -41,6 +42,7 @@ typeof
 void
 volatile
 while
+
 Declaración de Datos:
 “string” (string)
 1234 (integer)
