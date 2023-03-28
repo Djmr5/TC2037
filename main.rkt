@@ -1,6 +1,7 @@
 #lang racket
 
 ; Depending on the token and who it matches the span tag class changes and it's sended to the html as a format
+;; O(1)
 (define (highlight-token token)
   (cond
     [(not (string? token)) ""]
@@ -19,15 +20,19 @@
 ; to the function highlight-token where it will be processed, this happens to every token due to the map function
 (define (process-line line)
   (define (tokenize str)
+    ;; O(n)
     (regexp-match* #px"(\\s+|[][(){}<>;#.,:!/']|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
+  ;; O(n^2) 
   (string-join (map highlight-token (tokenize line)) ""))
 
 ; Receives the input file and outputs the file into html file
 (define (process-file input-file output-file) 
 (with-input-from-file input-file
   (lambda ()
+    
     (define output-port (open-output-file output-file))
     (display "<html>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n<pre>\n" output-port)
+    ;; O(n ^3)
     (for ([l (in-lines)])
       (display (process-line l) output-port)
       (display "\n" output-port))
