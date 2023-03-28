@@ -13,14 +13,14 @@
     [(regexp-match? #px"^\\d+\\.\\d*$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\.\\d+$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\d+$" token) (format "<span class=\"integer\">~a</span>" token)]
-    [(regexp-match? #px"^[<>;#.,:!/]$" token) (format "<span class=\"punctuation\">~a</span>" token)]
+    [(regexp-match? #px"^[<>;#.,:!/']$" token) (format "<span class=\"punctuation\">~a</span>" token)]
     [else (format "<span>~a</span>" token)]))
 
 ; The process-line function creates tokens for every keyword and sends the tokenized version of the line
 ; to the function highlight-token where it will be processed, this happens to every token due to the map function
 (define (process-line line)
   (define (tokenize str)
-    (regexp-match* #px"(\\s+|[][(){}<>;#.,:!/]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
+    (regexp-match* #px"(\\s+|[][(){}<>;#.,:!/']|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
   (string-join (map highlight-token (tokenize line)) ""))
 
 ; Receives the input file and outputs the file into html file

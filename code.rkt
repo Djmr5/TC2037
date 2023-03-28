@@ -6,6 +6,9 @@
   (define y "world")
   (string-append x ", " y "!"))
 
+(define my-other-list '(1 2 3 4 5))
+(length my-other-list) ; output: 5
+
 (define a 1)
 (define b 2)
 (define result (example-function a b))

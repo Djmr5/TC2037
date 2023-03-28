@@ -4,6 +4,7 @@ using namespace std;
 
 string exampleFunction(bool arg1, string arg2)
 {
+  char myChar = 'a';
   int year = 0;
   int age = 18;
   // This is a comment
