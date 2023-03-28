@@ -9,6 +9,7 @@
 (define my-other-list '(1 2 3 4 5))
 (length my-other-list) ; output: 5
 
+(define num #x1F)
 (define a 1)
 (define b 2)
 (define result (example-function a b))

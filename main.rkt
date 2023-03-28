@@ -9,7 +9,6 @@
     [(regexp-match? #px"^[][(){}]$" token) (format "<span class=\"block\">~a</span>" token)]
     [(regexp-match? #px"^\".*\"$" token) (format "<span class=\"string\">~a</span>" token)]
     [(regexp-match? #px"^[[:alpha:]][[:alnum:]_]*$" token) (format "<span class=\"var\">~a</span>" token)]
-    [(regexp-match? #px"^#x[[:xdigit:]]+$" token) (format "<span class=\"hexadecimal\">~a</span>" token)]
     [(regexp-match? #px"^\\d+\\.\\d*$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\.\\d+$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\d+$" token) (format "<span class=\"integer\">~a</span>" token)]
