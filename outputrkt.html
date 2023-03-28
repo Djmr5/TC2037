@@ -54,14 +54,14 @@
 <span>  </span>
 <span>  </span><span class="block">(</span><span class="keyword">void</span><span class="block">)</span><span class="block">)</span>
 
-<span class="block">(</span><span class="var">define</span><span> </span><span class="var">person</span>
-<span>  </span><span class="block">(</span><span class="var">class</span><span> </span><span class="var">object</span>
+<span class="block">(</span><span class="var">define</span><span> </span><span class="var">person</span><span class="punctuation">%</span>
+<span>  </span><span class="block">(</span><span class="var">class</span><span> </span><span class="var">object</span><span class="punctuation">%</span>
 <span>    </span><span class="block">(</span><span class="var">init</span><span> </span><span class="var">name</span><span> </span><span class="var">age</span><span class="block">)</span>
 <span>    </span><span class="block">(</span><span class="var">super</span><span class="keyword">new</span><span class="block">)</span>
 <span>    </span><span class="block">(</span><span class="var">define</span><span class="punctuation">/</span><span class="keyword">public</span><span> </span><span class="block">(</span><span class="var">greet</span><span class="block">)</span>
 <span>      </span><span class="block">(</span><span class="var">displayln</span><span> </span><span class="block">(</span><span class="var">string</span><span class="var">append</span><span> </span><span class="string">"Hello, my name is "</span><span> </span><span class="var">name</span><span> </span><span class="string">", and I am "</span><span> </span><span class="block">(</span><span class="var">number</span><span class="punctuation">></span><span class="var">string</span><span> </span><span class="var">age</span><span class="block">)</span><span> </span><span class="string">" years old."</span><span class="block">)</span><span class="block">)</span><span class="block">)</span><span class="block">)</span><span class="block">)</span>
 
-<span class="block">(</span><span class="var">define</span><span> </span><span class="var">alice</span><span> </span><span class="block">(</span><span class="keyword">new</span><span> </span><span class="var">person</span><span> </span><span class="block">[</span><span class="string">"Alice"</span><span> </span><span class="integer">25</span><span class="block">]</span><span class="block">)</span><span class="block">)</span>
+<span class="block">(</span><span class="var">define</span><span> </span><span class="var">alice</span><span> </span><span class="block">(</span><span class="keyword">new</span><span> </span><span class="var">person</span><span class="punctuation">%</span><span> </span><span class="block">[</span><span class="string">"Alice"</span><span> </span><span class="integer">25</span><span class="block">]</span><span class="block">)</span><span class="block">)</span>
 <span class="block">(</span><span class="var">send</span><span> </span><span class="var">alice</span><span> </span><span class="var">greet</span><span class="block">)</span><span> </span><span class="punctuation">;</span><span> </span><span class="var">prints</span><span> </span><span class="string">"Hello, my name is Alice, and I am 25 years old."</span>
 
 <span class="block">(</span><span class="var">define</span><span> </span><span class="block">(</span><span class="var">print</span><span class="var">list</span><span class="punctuation">!</span><span> </span><span class="var">lst</span><span class="block">)</span>

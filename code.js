@@ -1,4 +1,5 @@
 function exampleFunction(arg1, arg2) {
+  var x = 1+1;
   let num = 0x1F;
   let year = 0;
   const age = 18; // default value

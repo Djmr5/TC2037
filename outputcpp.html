@@ -7,6 +7,7 @@
 
 <span class="var">string</span><span> </span><span class="var">exampleFunction</span><span class="block">(</span><span class="var">bool</span><span> </span><span class="var">arg1</span><span class="punctuation">,</span><span> </span><span class="var">string</span><span> </span><span class="var">arg2</span><span class="block">)</span>
 <span class="block">{</span>
+<span>  </span><span class="var">int</span><span> </span><span class="var">x</span><span> </span><span> </span><span class="integer">1</span><span class="punctuation">+</span><span class="integer">1</span><span class="punctuation">;</span>
 <span>  </span><span class="var">int</span><span> </span><span class="var">num</span><span> </span><span> </span><span>0x1F</span><span class="punctuation">;</span>
 <span>  </span><span class="var">char</span><span> </span><span class="var">myChar</span><span> </span><span> </span><span class="punctuation">'</span><span class="var">a</span><span class="punctuation">'</span><span class="punctuation">;</span>
 <span>  </span><span class="var">int</span><span> </span><span class="var">year</span><span> </span><span> </span><span class="integer">0</span><span class="punctuation">;</span>
@@ -50,7 +51,7 @@
 
 <span>  </span><span class="var">string</span><span> </span><span class="var">x</span><span> </span><span> </span><span class="string">"hello"</span><span class="punctuation">;</span>
 <span>  </span><span class="var">string</span><span> </span><span class="var">y</span><span> </span><span> </span><span class="string">"world"</span><span class="punctuation">;</span>
-<span>  </span><span class="keyword">return</span><span> </span><span class="var">x</span><span> </span><span> </span><span class="string">", "</span><span> </span><span> </span><span class="var">y</span><span> </span><span> </span><span class="string">"!"</span><span class="punctuation">;</span>
+<span>  </span><span class="keyword">return</span><span> </span><span class="var">x</span><span> </span><span class="punctuation">+</span><span> </span><span class="string">", "</span><span> </span><span class="punctuation">+</span><span> </span><span class="var">y</span><span> </span><span class="punctuation">+</span><span> </span><span class="string">"!"</span><span class="punctuation">;</span>
 <span class="block">}</span>
 
 <span class="keyword">void</span><span> </span><span class="var">otherFunction</span><span class="block">(</span><span class="block">)</span>
@@ -69,7 +70,7 @@
 <span>  </span><span class="var">cout</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">b2</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">endl</span><span class="punctuation">;</span>
 <span>  </span><span class="var">cout</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">str</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">endl</span><span class="punctuation">;</span>
 
-<span>  </span><span class="keyword">for</span><span> </span><span class="block">(</span><span class="var">int</span><span> </span><span class="var">i</span><span> </span><span> </span><span class="integer">0</span><span class="punctuation">;</span><span> </span><span class="var">i</span><span> </span><span class="punctuation"><</span><span> </span><span class="var">NUM</span><span class="punctuation">;</span><span> </span><span class="var">i</span><span class="block">)</span>
+<span>  </span><span class="keyword">for</span><span> </span><span class="block">(</span><span class="var">int</span><span> </span><span class="var">i</span><span> </span><span> </span><span class="integer">0</span><span class="punctuation">;</span><span> </span><span class="var">i</span><span> </span><span class="punctuation"><</span><span> </span><span class="var">NUM</span><span class="punctuation">;</span><span> </span><span class="var">i</span><span class="punctuation">+</span><span class="punctuation">+</span><span class="block">)</span>
 <span>  </span><span class="block">{</span>
 <span>    </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">i</span><span> </span><span> </span><span class="integer">10</span><span class="block">)</span>
 <span>    </span><span class="block">{</span>
@@ -112,14 +113,14 @@
 
 <span>  </span><span class="keyword">try</span>
 <span>  </span><span class="block">{</span>
-<span>    </span><span class="var">int</span><span> </span><span class="var">ptr</span><span> </span><span> </span><span class="keyword">new</span><span> </span><span class="var">int</span><span class="block">[</span><span class="var">NUM</span><span class="block">]</span><span class="punctuation">;</span>
+<span>    </span><span class="var">int</span><span> </span><span class="punctuation">*</span><span class="var">ptr</span><span> </span><span> </span><span class="keyword">new</span><span> </span><span class="var">int</span><span class="block">[</span><span class="var">NUM</span><span class="block">]</span><span class="punctuation">;</span>
 <span>    </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">ptr</span><span> </span><span> </span><span class="var">NULL</span><span class="block">)</span>
 <span>    </span><span class="block">{</span>
 <span>      </span><span class="keyword">throw</span><span> </span><span class="string">"Memory allocation failed!"</span><span class="punctuation">;</span>
 <span>    </span><span class="block">}</span>
 <span>    </span><span class="var">delete</span><span class="block">[</span><span class="block">]</span><span> </span><span class="var">ptr</span><span class="punctuation">;</span>
 <span>  </span><span class="block">}</span>
-<span>  </span><span class="var">catch</span><span> </span><span class="block">(</span><span class="keyword">const</span><span> </span><span class="var">char</span><span> </span><span class="var">msg</span><span class="block">)</span>
+<span>  </span><span class="var">catch</span><span> </span><span class="block">(</span><span class="keyword">const</span><span> </span><span class="var">char</span><span> </span><span class="punctuation">*</span><span class="var">msg</span><span class="block">)</span>
 <span>  </span><span class="block">{</span>
 <span>    </span><span class="var">cout</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">msg</span><span> </span><span class="punctuation"><</span><span class="punctuation"><</span><span> </span><span class="var">endl</span><span class="punctuation">;</span>
 <span>  </span><span class="block">}</span>
@@ -136,7 +137,7 @@
 <span>  </span><span class="block">}</span>
 <span>  </span><span class="var">int</span><span> </span><span class="var">x</span><span> </span><span> </span><span class="integer">10</span><span class="punctuation">;</span>
 <span>  </span><span class="var">int</span><span> </span><span class="var">y</span><span> </span><span> </span><span class="integer">3</span><span class="punctuation">;</span>
-<span>  </span><span class="var">int</span><span> </span><span class="var">remainder</span><span> </span><span> </span><span class="var">x</span><span> </span><span> </span><span class="var">y</span><span class="punctuation">;</span><span> </span><span class="punctuation">/</span><span class="punctuation">/</span><span> </span><span class="var">remainder</span><span> </span><span> </span><span class="integer">1</span>
+<span>  </span><span class="var">int</span><span> </span><span class="var">remainder</span><span> </span><span> </span><span class="var">x</span><span> </span><span class="punctuation">%</span><span> </span><span class="var">y</span><span class="punctuation">;</span><span> </span><span class="punctuation">/</span><span class="punctuation">/</span><span> </span><span class="var">remainder</span><span> </span><span> </span><span class="integer">1</span>
 <span>  </span><span class="keyword">return</span><span> </span><span class="integer">0</span><span class="punctuation">;</span>
 <span class="block">}</span>
 </pre>
