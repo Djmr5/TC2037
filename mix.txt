@@ -1,0 +1,16 @@
+and  break continue elseif else for if in or return select while 
+    if else for while do int float double boolean char void public
+bool var const let function return class 
+
+ifelse for while define lambda cond let and or not int float double void string struct
+if var else const let return function define lambda def and or condnot letrec
+  elif while repeat until end begin procedure var function float doubleint
+do while repeat if else break reeturn until fn let const for continue int string
+
++ - * / // & && | || ! == = < > <> <= >= =! " "" # $ % ( ) () ' { } {} [] [ ] , ; :
+1 2 3 4 5 6 7 8 9 0
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+
+ 
+ 

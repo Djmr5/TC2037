@@ -11,6 +11,9 @@ Puntuación:
 /
 *
 %
+=
+$
+&
 (
 )
 {
@@ -49,4 +52,3 @@ Declaración de Datos:
 1.4 ó .45 (float)
 true
 false
-

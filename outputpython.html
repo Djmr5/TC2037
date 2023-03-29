@@ -1,0 +1,27 @@
+<html>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<pre>
+<span class="punctuation">#</span><span> </span><span class="var">initializing</span><span> </span><span class="var">list</span>
+<span class="var">test_list</span><span> </span><span class="punctuation">=</span><span> </span><span class="block">[</span><span class="integer">1</span><span class="punctuation">,</span><span> </span><span class="integer">4</span><span class="punctuation">,</span><span> </span><span class="integer">5</span><span class="punctuation">,</span><span> </span><span class="integer">8</span><span class="punctuation">,</span><span> </span><span class="integer">10</span><span class="block">]</span>
+<span>  </span>
+<span class="var">def</span><span> </span><span class="var">Sorted</span><span class="block">(</span><span class="block">)</span><span class="punctuation">:</span>
+<span>  </span><span class="punctuation">#</span><span> </span><span class="var">printing</span><span> </span><span class="var">original</span><span> </span><span class="var">list</span><span> </span>
+<span>  </span><span class="var">print</span><span> </span><span class="block">(</span><span class="string">"Original list : "</span><span> </span><span class="punctuation">+</span><span> </span><span class="var">str</span><span class="block">(</span><span class="var">test_list</span><span class="block">)</span><span class="block">)</span>
+
+<span>  </span><span class="punctuation">#</span><span> </span><span class="var">check</span><span> </span><span class="var">sorted</span><span> </span><span class="var">list</span><span> </span>
+<span>  </span><span class="var">flag</span><span> </span><span class="punctuation">=</span><span> </span><span class="integer">0</span>
+<span>  </span><span class="var">i</span><span> </span><span class="punctuation">=</span><span> </span><span class="integer">1</span>
+<span>  </span><span class="keyword">while</span><span> </span><span class="var">i</span><span> </span><span class="punctuation"><</span><span> </span><span class="var">len</span><span class="block">(</span><span class="var">test_list</span><span class="block">)</span><span class="punctuation">:</span>
+<span>      </span><span class="keyword">if</span><span class="block">(</span><span class="var">test_list</span><span class="block">[</span><span class="var">i</span><span class="block">]</span><span> </span><span class="punctuation"><</span><span> </span><span class="var">test_list</span><span class="block">[</span><span class="var">i</span><span> </span><span class="punctuation">-</span><span> </span><span class="integer">1</span><span class="block">]</span><span class="block">)</span><span class="punctuation">:</span>
+<span>          </span><span class="var">flag</span><span> </span><span class="punctuation">=</span><span> </span><span class="integer">1</span>
+<span>      </span><span class="var">i</span><span> </span><span class="punctuation">+</span><span class="punctuation">=</span><span> </span><span class="integer">1</span>
+<span>        </span>
+<span>  </span><span class="punctuation">#</span><span> </span><span class="var">printing</span><span> </span><span class="var">result</span>
+<span>  </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">not</span><span> </span><span class="var">flag</span><span class="block">)</span><span> </span><span class="punctuation">:</span>
+<span>      </span><span class="var">print</span><span> </span><span class="block">(</span><span class="string">"Yes, List is sorted."</span><span class="block">)</span>
+<span>  </span><span class="keyword">else</span><span> </span><span class="punctuation">:</span>
+<span>      </span><span class="var">print</span><span> </span><span class="block">(</span><span class="string">"No, List is not sorted."</span><span class="block">)</span>
+
+<span class="var">Sorted</span><span class="block">(</span><span class="block">)</span>
+</pre>
+</html>
