@@ -7,10 +7,10 @@
     [(not (string? token)) ""]
     [(regexp-match? #px"^\\s+$" token) (format "<span>~a</span>" token)]
     [(regexp-match? #px"^(if|else|break|case|const|continue|for||new|null|private|protected|public|return|short|static|switch|this|throw|try|typeof|void|volatile|while)$" token) (format "<span class=\"keyword\">~a</span>" token)]
-    [(regexp-match? #px"^[][(){}]$" token) (format "<span class=\"block\">~a</span>" token)]
+    [(regexp-match? #px"^[\\[\\](){}]$" token) (format "<span class=\"block\">~a</span>" token)]
     [(regexp-match? #px"^\".*\"$" token) (format "<span class=\"string\">~a</span>" token)]
     [(regexp-match? #px"^[[:alpha:]][[:alnum:]_]*$" token) (format "<span class=\"var\">~a</span>" token)]
-    [(regexp-match? #px"^\\d+\\.\\d*$" token) (format "<span class=\"float\">~a</span>" token)]
+    [(regexp-match? #px"^\\d+\\.\\d+$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\.\\d+$" token) (format "<span class=\"float\">~a</span>" token)]
     [(regexp-match? #px"^\\d+$" token) (format "<span class=\"integer\">~a</span>" token)]
     [(regexp-match? #px"^[<>;#.,:!/+*%'=\\|\\-]$" token) (format "<span class=\"punctuation\">~a</span>" token)]
@@ -21,7 +21,7 @@
 (define (process-line line)
   (define (tokenize str)
     ;; O(n)
-    (regexp-match* #px"(\\s+|[][(){}<>;#.,:!/+*%'=&\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d*|\\.\\d+|\\d+)" str))
+    (regexp-match* #px"(\\s+|[(){}<>;#.,:!/+*%'=&\\[\\]\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d+|\\.\\d+|\\d+)" str))
   ;; O(n^2) 
   (string-join (map highlight-token (tokenize line)) ""))
 
