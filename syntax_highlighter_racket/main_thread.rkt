@@ -25,26 +25,39 @@
   ;; O(n^2) 
   (string-join (map highlight-token (tokenize line)) ""))
 
+; Semaphore for line processing
+(define output-semaphore (make-semaphore 1))
 ; Receives the input file and outputs the file into html file
-(define (process-file input-file output-file) 
-(with-input-from-file input-file
-  (lambda ()
-    
-    (define output-port (open-output-file output-file))
-    (display "<html>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n<pre>\n" output-port)
-    ;; O(n ^3)
-    (for ([l (in-lines)])
-      (display (process-line l) output-port)
-      (display "\n" output-port))
-    (display "</pre>\n</html>\n" output-port)
-    (close-output-port output-port))))
+(define (process-file input-file output-file)
+  (with-input-from-file input-file
+    (lambda ()
+      (define output-port (open-output-file output-file))
+      (display "<html>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n<pre>\n" output-port)
+      ; Create a list for all lines in the file
+      (define lines (for/list ([l (in-lines)]) l))
+      ; Create a thread for each line and process it
+      (define lines_threads
+        (for/list
+         ([l lines])
+         (thread
+          (lambda ()
+            (semaphore-wait output-semaphore)
+            (display (process-line l) output-port)
+            (display "\n" output-port)
+            (semaphore-post output-semaphore)))))
+      ; Waits for threads to complete and kills them
+      (for-each thread-wait lines_threads)
+      (for-each kill-thread lines_threads)
+      (semaphore-wait output-semaphore)
+      (display "</pre>\n</html>\n" output-port)
+      (close-output-port output-port)
+      (semaphore-post output-semaphore))))
 
 ; The first line of input contains one number N that represents the number of files to be processed
 (define (process-files)
   (define num-files (read))
   ; Creates a list of strings for N files containing each file path
   (define file-paths (for/list ([i num-files]) (read)))
-
   ; Creates a thread for each file in file-paths
   (define threads
   (for/list ([file-path file-paths]
@@ -53,8 +66,8 @@
               (display (format "Processing file: ~a: At thread ~a~n" file-path i))
               (process-file file-path (string-append "output-" file-path ".html"))
               (display (format "Finished processing file: ~a: At thread ~a~n" file-path i))))))
-  
-  (for-each thread-wait threads))
+  (for-each thread-wait threads)
+  (for-each kill-thread threads))
 
 ; Main
 (process-files)

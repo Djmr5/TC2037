@@ -62,6 +62,7 @@
 (define threads
   (map make-thread '(A B C)))
 (for-each thread-wait threads)
+(for-each kill-thread threads)
 
 ; Fifth Example - Channels
 (define result-channel (make-channel))
@@ -85,11 +86,12 @@
           (channel-put result-channel
                        (format "Hilo ~a procesando ~a\n" thread-id item ))
           (loop)])))))
-  (define work-threads (map make-worker '(1 2)))
+(define work-threads (map make-worker '(1 2)))
 
-  (for ([item '(A B C D E F G H DONE DONE)])
-    (channel-put work-channel item))
+(for ([item '(A B C D E F G H DONE DONE)])
+  (channel-put work-channel item))
 
-  (for-each thread-wait work-threads)
+(for-each thread-wait work-threads)
+(for-each kill-thread work-threads)
   
-  (channel-put result-channel "")
+(channel-put result-channel "")
