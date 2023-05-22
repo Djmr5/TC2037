@@ -1,0 +1,37 @@
+#+title: Actividad 5.2
+#+PROPERTY: header-args :tangle act5-2.rkt
+
+* Numeros Primos
+Algoritmo para determinar si n es un n ́umero primo. Devuelve verdadero o falso.
+1. Si n es menor que 2, el algoritmo termina devolviendo falso.
+2. Para i desde 2 hasta [√n], realiza lo siguiente:
+    El algoritmo termina devolviendo falso si n es divisible entre i de manera exacta, de otra se repite el
+    ciclo con el siguiente valor de i.
+3. El algoritmo termina devolviendo verdadero si el ciclo del punto anterior conluy ́o de manera normal.
+#+BEGIN_SRC racket
+#lang racket
+
+
+(define (is-prime? n)
+  (cond
+    ((< n 2) #f)
+    (else
+     (define (check-divisors d)
+       (cond
+         ((> d (exact-floor (sqrt n))) #t)
+         ((= (remainder n d) 0) #f)
+         (else (check-divisors (+ d 1)))))
+     (check-divisors 2))))
+
+(define (sumaN n)
+  (define sum 0)
+  (for ([i (in-range 1 (add1 n))])
+    (when (is-prime? i)
+      (set! sum (+ sum i))))
+  sum)
+
+(sumaN 5000000)
+#+END_SRC
+
+#+RESULTS:
+: 838596693108

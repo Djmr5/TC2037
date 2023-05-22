@@ -1,0 +1,82 @@
+Nombre del documento a analizar: mix
+--------------------------------------------------
+              Comienza Reconocimento
+--------------------------------------------------
+Suma: +
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: =
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Paréntesis que abre: (
+Entero: 2
+Multiplicación: *
+Entero: 3
+Resta: -
+Entero: -4
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Variable: var_1
+Asignación: =
+Variable: var_2
+División: /
+Paréntesis que abre: (
+Real: -3.
+Potencia: ^
+Entero: -2
+Paréntesis que cierra: )
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: =
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: =
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Variable: a
+Multiplicación: *
+Variable: b
+División: /
+Entero: 2
+Comentario: //el comentario 2+3=4+1
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Variable: var
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: =
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida operador en: -
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: .
+Expresión inválida operador en: -
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Entero: 12
+--------------------------------------------------
+                 Siguiente Linea
+--------------------------------------------------
+Expresiones inválidas:
+Expresión inválida en: =
+--------------------------------------------------
+               Acaba Reconocimiento
+--------------------------------------------------
