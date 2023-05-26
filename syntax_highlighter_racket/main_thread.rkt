@@ -38,7 +38,7 @@
       ; Create a thread for each line and process it
       (define lines_threads
         (for/list
-         ([l lines])
+         ([l (reverse lines)])
          (thread
           (lambda ()
             (semaphore-wait output-semaphore)
