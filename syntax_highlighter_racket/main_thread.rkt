@@ -58,16 +58,16 @@
   (define num-files (read))
   ; Creates a list of strings for N files containing each file path
   (define file-paths (for/list ([i num-files]) (read)))
-  ; Creates a thread for each file in file-paths
-  (define threads
+  ; Creates a future thread for each file in file-paths
+  (define futures
   (for/list ([file-path file-paths]
              [i (length file-paths)])
-    (thread (lambda ()
-              (display (format "Processing file: ~a: At thread ~a~n" file-path i))
-              (process-file file-path (string-append "output-" file-path ".html"))
-              (display (format "Finished processing file: ~a: At thread ~a~n" file-path i))))))
-  (for-each thread-wait threads)
-  (for-each kill-thread threads))
+    (future
+      (lambda ()
+        (display (format "Processing file: ~a: At future ~a~n" file-path i))
+        (process-file file-path (string-append "output-" file-path ".html"))
+        (display (format "Finished processing file: ~a: At future ~a~n" file-path i))))))
+  (for-each touch futures))
 
 ; Main
 (process-files)
