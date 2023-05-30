@@ -1,0 +1,61 @@
+<html>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<pre>
+<span class="var">using</span><span> </span><span class="var">System</span><span class="punctuation">.</span><span class="var">Collections</span><span class="punctuation">;</span>
+<span class="var">using</span><span> </span><span class="var">System</span><span class="punctuation">.</span><span class="var">Collections</span><span class="punctuation">.</span><span class="var">Generic</span><span class="punctuation">;</span>
+<span class="var">using</span><span> </span><span class="var">UnityEngine</span><span class="punctuation">;</span>
+
+<span class="keyword">public</span><span> </span><span class="var">class</span><span> </span><span class="var">MyRobot</span><span> </span><span class="punctuation">:</span><span> </span><span class="var">MonoBehaviour</span>
+<span class="block">{</span>
+<span>    </span><span class="var">float</span><span> </span><span class="var">speed</span><span class="punctuation">;</span>
+<span>    </span><span class="var">int</span><span class="block">[</span><span class="block">]</span><span> </span><span class="var">rotY</span><span> </span><span class="punctuation">=</span><span> </span><span class="block">{</span><span> </span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="integer">90</span><span class="punctuation">,</span><span> </span><span class="integer">180</span><span class="punctuation">,</span><span> </span><span class="integer">270</span><span> </span><span class="block">}</span><span class="punctuation">;</span>
+
+
+
+<span>    </span><span class="punctuation">/</span><span class="punctuation">/</span><span> </span><span class="var">Start</span><span> </span><span class="var">is</span><span> </span><span class="var">called</span><span> </span><span class="var">before</span><span> </span><span class="var">the</span><span> </span><span class="var">first</span><span> </span><span class="var">frame</span><span> </span><span class="var">update</span>
+<span>    </span><span class="keyword">void</span><span> </span><span class="var">Start</span><span class="block">(</span><span class="block">)</span>
+<span>    </span><span class="block">{</span>
+<span>        </span><span class="var">speed</span><span> </span><span class="punctuation">=</span><span> </span><span class="var">Random</span><span class="punctuation">.</span><span class="var">Range</span><span class="block">(</span><span class="float">0.005</span><span class="var">f</span><span class="punctuation">,</span><span> </span><span class="float">0.01</span><span class="var">f</span><span class="block">)</span><span class="punctuation">;</span>
+<span>    </span><span class="block">}</span>
+
+<span>    </span><span class="keyword">void</span><span> </span><span class="var">Move</span><span class="block">(</span><span class="block">)</span>
+<span>    </span><span class="block">{</span>
+<span>        </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">transform</span><span class="punctuation">.</span><span class="var">eulerAngles</span><span class="punctuation">.</span><span class="var">y</span><span> </span><span class="punctuation">=</span><span class="punctuation">=</span><span> </span><span class="integer">0</span><span class="block">)</span>
+<span>        </span><span class="block">{</span>
+<span>            </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">position</span><span> </span><span class="punctuation">+</span><span class="punctuation">=</span><span> </span><span class="keyword">new</span><span> </span><span class="var">Vector3</span><span class="block">(</span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="var">speed</span><span class="block">)</span><span class="punctuation">;</span>
+<span>        </span><span class="block">}</span>
+<span>        </span><span class="keyword">else</span><span> </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">transform</span><span class="punctuation">.</span><span class="var">eulerAngles</span><span class="punctuation">.</span><span class="var">y</span><span> </span><span class="punctuation">=</span><span class="punctuation">=</span><span> </span><span class="integer">180</span><span class="block">)</span>
+<span>        </span><span class="block">{</span>
+<span>            </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">position</span><span> </span><span class="punctuation">+</span><span class="punctuation">=</span><span> </span><span class="keyword">new</span><span> </span><span class="var">Vector3</span><span class="block">(</span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="punctuation">-</span><span class="var">speed</span><span class="block">)</span><span class="punctuation">;</span>
+<span>        </span><span class="block">}</span>
+<span>        </span><span class="keyword">else</span><span> </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">transform</span><span class="punctuation">.</span><span class="var">eulerAngles</span><span class="punctuation">.</span><span class="var">y</span><span> </span><span class="punctuation">=</span><span class="punctuation">=</span><span> </span><span class="integer">90</span><span class="block">)</span>
+<span>        </span><span class="block">{</span>
+<span>            </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">position</span><span> </span><span class="punctuation">+</span><span class="punctuation">=</span><span> </span><span class="keyword">new</span><span> </span><span class="var">Vector3</span><span class="block">(</span><span class="var">speed</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="block">)</span><span class="punctuation">;</span>
+<span>        </span><span class="block">}</span>
+<span>        </span><span class="keyword">else</span><span> </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">transform</span><span class="punctuation">.</span><span class="var">eulerAngles</span><span class="punctuation">.</span><span class="var">y</span><span> </span><span class="punctuation">=</span><span class="punctuation">=</span><span> </span><span class="integer">270</span><span class="block">)</span>
+<span>        </span><span class="block">{</span>
+<span>            </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">position</span><span> </span><span class="punctuation">+</span><span class="punctuation">=</span><span> </span><span class="keyword">new</span><span> </span><span class="var">Vector3</span><span class="block">(</span><span class="punctuation">-</span><span class="var">speed</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="block">)</span><span class="punctuation">;</span>
+<span>        </span><span class="block">}</span>
+<span>    </span><span class="block">}</span>
+
+<span>    </span><span class="punctuation">/</span><span class="punctuation">/</span><span> </span><span class="var">Update</span><span> </span><span class="var">is</span><span> </span><span class="var">called</span><span> </span><span class="var">once</span><span> </span><span class="var">per</span><span> </span><span class="var">frame</span>
+<span>    </span><span class="keyword">void</span><span> </span><span class="var">Update</span><span class="block">(</span><span class="block">)</span>
+<span>    </span><span class="block">{</span>
+<span>        </span><span class="var">Move</span><span class="block">(</span><span class="block">)</span><span class="punctuation">;</span>
+<span>    </span><span class="block">}</span>
+<span>    </span><span class="keyword">private</span><span> </span><span class="keyword">void</span><span> </span><span class="var">OnCollisionStay</span><span class="block">(</span><span class="var">Collision</span><span> </span><span class="var">collision</span><span class="block">)</span>
+<span>    </span><span class="block">{</span>
+<span>        </span><span class="var">int</span><span> </span><span class="var">rot</span><span class="punctuation">;</span>
+<span>        </span><span class="keyword">while</span><span> </span><span class="block">(</span><span class="var">true</span><span class="block">)</span>
+<span>        </span><span class="block">{</span>
+<span>            </span><span class="var">rot</span><span> </span><span class="punctuation">=</span><span> </span><span class="var">Random</span><span class="punctuation">.</span><span class="var">Range</span><span class="block">(</span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="var">rotY</span><span class="punctuation">.</span><span class="var">Length</span><span class="block">)</span><span class="punctuation">;</span>
+<span>            </span><span class="keyword">if</span><span> </span><span class="block">(</span><span class="var">rotY</span><span class="block">[</span><span class="var">rot</span><span class="block">]</span><span> </span><span class="punctuation">!</span><span class="punctuation">=</span><span> </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">eulerAngles</span><span class="punctuation">.</span><span class="var">y</span><span class="block">)</span>
+<span>            </span><span class="block">{</span>
+<span>                </span><span class="keyword">break</span><span class="punctuation">;</span>
+<span>            </span><span class="block">}</span>
+<span>        </span><span class="block">}</span>
+<span>        </span><span class="var">transform</span><span class="punctuation">.</span><span class="var">rotation</span><span> </span><span class="punctuation">=</span><span> </span><span class="var">Quaternion</span><span class="punctuation">.</span><span class="var">Euler</span><span class="block">(</span><span class="integer">0</span><span class="punctuation">,</span><span> </span><span class="var">rotY</span><span class="block">[</span><span class="var">rot</span><span class="block">]</span><span class="punctuation">,</span><span> </span><span class="integer">0</span><span class="block">)</span><span class="punctuation">;</span>
+<span>    </span><span class="block">}</span>
+<span class="block">}</span>
+</pre>
+</html>

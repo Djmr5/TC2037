@@ -1,5 +1,5 @@
 #lang racket
-
+(define start-time (current-inexact-milliseconds))
 ; Depending on the token and who it matches the span tag class changes and it's sended to the html as a format
 ;; O(1)
 (define (highlight-token token)
@@ -21,7 +21,7 @@
 (define (process-line line)
   (define (tokenize str)
     ;; O(n)
-    (regexp-match* #px"(\\s+|[(){}<>;#.,:!/+*%'=&\\[\\]\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d+|\\.\\d+|\\d+)" str))
+    (regexp-match* #px"(\\s+|[(){}<>;#.,:!/+*%'=&\\[\\]\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d+|\\.\\d+|\\d+|.)" str))
   ;; O(n^2) 
   (string-join (map highlight-token (tokenize line)) ""))
 
@@ -49,3 +49,12 @@
 (process-file "malo2" "outputmalo2.html")
 (process-file "mix.txt" "outputmixt.html")
 (process-file "python.py" "outputpython.html")
+(process-file "p1-2.txt" "outputp1-2.html")
+(process-file "p2-2.txt" "outputp2-2.html")
+(process-file "p3-2.txt" "outputp3-2.html")
+(process-file "p4-2.txt" "outputp4-2.html")
+(process-file "p5-2.txt" "outputp5-2.html")
+
+(define end-time (current-inexact-milliseconds))
+  (define elapsed-time (- end-time start-time))
+  (printf "Execution time: ~a milliseconds\n" elapsed-time)

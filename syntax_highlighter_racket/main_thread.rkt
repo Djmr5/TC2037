@@ -1,5 +1,5 @@
 #lang racket
-
+(define start-time (current-inexact-milliseconds))
 ; Depending on the token and who it matches the span tag class changes and it's sended to the html as a format
 ;; O(1)
 (define (highlight-token token)
@@ -21,7 +21,7 @@
 (define (process-line line)
   (define (tokenize str)
     ;; O(n)
-    (regexp-match* #px"(\\s+|[(){}<>;#.,:!/+*%'=&\\[\\]\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d+|\\.\\d+|\\d+)" str))
+    (regexp-match* #px"(\\s+|[(){}<>;#.,:!/+*%'=&\\[\\]\\$\\|\\-]|\"[^\"]*\"|[[:alpha:]]+[[:alnum:]_]*|0[xX][[:xdigit:]]+|\\d+\\.\\d+|\\.\\d+|\\d+|.)" str))
   ;; O(n^2) 
   (string-join (map highlight-token (tokenize line)) ""))
 
@@ -53,21 +53,25 @@
       (close-output-port output-port)
       (semaphore-post output-semaphore))))
 
+
 ; The first line of input contains one number N that represents the number of files to be processed
 (define (process-files)
   (define num-files (read))
   ; Creates a list of strings for N files containing each file path
   (define file-paths (for/list ([i num-files]) (read)))
   ; Creates a future thread for each file in file-paths
-  (define futures
+  (define threads
   (for/list ([file-path file-paths]
              [i (length file-paths)])
-    (future
-      (lambda ()
-        (display (format "Processing file: ~a: At future ~a~n" file-path i))
-        (process-file file-path (string-append "output-" file-path ".html"))
-        (display (format "Finished processing file: ~a: At future ~a~n" file-path i))))))
-  (for-each touch futures))
+    (thread (lambda ()
+              (display (format "Processing file: ~a: At thread ~a~n" file-path i))
+              (process-file file-path (string-append "output-" file-path ".html"))
+              (display (format "Finished processing file: ~a: At thread ~a~n" file-path i))))))
+  (for-each thread-wait threads)
+  (for-each kill-thread threads))
 
 ; Main
 (process-files)
+(define end-time (current-inexact-milliseconds))
+  (define elapsed-time (- end-time start-time))
+  (printf "Execution time: ~a milliseconds\n" elapsed-time)
