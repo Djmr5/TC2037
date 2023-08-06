@@ -52,3 +52,23 @@
 (for-each thread-wait runner-threads)
 (for-each kill-thread runner-threads)
 
+; Fourth Exercise
+(define cake-semaphore (make-semaphore 1))
+(define (cake-thread name)
+  (thread (lambda ()
+            (let loop ([cake 8])
+              (unless (> cake 0)
+                  (semaphore-wait cake-semaphore)
+                  (set! cake (- 1 cake))
+                  (printf "Person ~a, eats 1 slice, ~a~n are left" name cake)
+                  ;(sleep 3)
+                  (semaphore-post cake-semaphore)
+                  (loop cake)))
+            )
+          )
+  )
+
+(define cake-threads
+  (map cake-thread '(4 3 2 1)))
+(for-each thread-wait cake-threads)
+(for-each kill-thread cake-threads)
